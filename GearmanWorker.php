@@ -31,17 +31,7 @@ class GearmanWorker
             extract(json_decode($workload, true));
             Console::log($draw_period);
             $TotalPendingBetSlips = LotteryBetSlipProcessor::getPendingBetSlips($bettable, $draw_period);
-            
-            // //process all pending bets
-            Console::log(json_encode($TotalPendingBetSlips));
-  
-            try {
-                if (LotteryBetSlipProcessor::processPendingBetSlips($TotalPendingBetSlips, $drawtable,  $bettable, explode(',', $drawNumber)) == true) {
-                    echo "Job done!";
-                }
-            } catch (\Throwable $th) {
-                echo $th->getMessage();
-            }
+            LotteryBetSlipProcessor::processPendingBetSlips($TotalPendingBetSlips, $drawtable,  $bettable, explode(',', $drawNumber)) == true ? Console::log('success') : Console::error('failed');
         }
     }
 

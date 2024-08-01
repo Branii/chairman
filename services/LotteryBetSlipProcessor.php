@@ -52,7 +52,7 @@ class LotteryBetSlipProcessor extends RebateController  {
     }
 
     public static function shareRebateProfit(array $userDetails, string $rebateAmount, array $betSlip){
-        if($betSlip['selfRebate'] == 'true') RebateController::applyRebate($userDetails['agent'],$userDetails['uid'], $rebateAmount, $betSlip, 8);
+        if($betSlip['selfrebate'] == 'true') RebateController::applyRebate($userDetails['agent'],$userDetails['uid'], $rebateAmount, $betSlip, 8);
         if(!empty($userDetails['agent'])) RebateController::distributeRebate($userDetails, $betSlip);
     }
 
@@ -75,7 +75,7 @@ class LotteryBetSlipProcessor extends RebateController  {
 
     public static function handleLostSlips(array $betSlip, array $betSlipDetails, string $drawTable, string $betTable, array $userDetails, array $drawNumber) : bool {
         $drawNumber = implode(",",$drawNumber);
-        if($betSlip['selfRebate'] == 'true') RebateController::applyRebate($userDetails['agent'],$userDetails['uid'], 0, $betSlip, 8);
+        if($betSlip['selfrebate'] == 'true') RebateController::applyRebate($userDetails['agent'],$userDetails['uid'], 0, $betSlip, 8);
         if($userDetails['agent'] != '') RebateController::distributeRebate($userDetails, $betSlip);
         self::updateBetTable($betTable, 3, $betSlipDetails, $drawNumber, $betSlip, 0);
         if($betSlip['stop_if_lost'] == 1) self::handleTrackBetSlipRule($betTable,$betSlip,$userDetails);
@@ -84,7 +84,7 @@ class LotteryBetSlipProcessor extends RebateController  {
 
     public static function handleRefundSlips(array $betSlip, array $betSlipDetails, string $drawTable, string $betTable, array $userDetails, array $drawNumber) : bool {
         $drawNumber = implode(",",$drawNumber);
-        if($betSlip['selfRebate'] == 'true') RebateController::applyRebate($userDetails['agent'],$userDetails['uid'], 0, $betSlip,8);
+        if($betSlip['selfrebate'] == 'true') RebateController::applyRebate($userDetails['agent'],$userDetails['uid'], 0, $betSlip,8);
         if($userDetails['agent'] != '') RebateController::distributeRebate($userDetails, $betSlip);
         self::updateBetTable($betTable, 6, $betSlipDetails, $drawNumber, $betSlip, 0);
         self::updateUserBalanceAndTransactions($betSlip, $userDetails, $userDetails['balance'] + $betSlip['bet_amount'], 6);

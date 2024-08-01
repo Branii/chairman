@@ -118,7 +118,7 @@ class Model extends Helper
 
     public static function updateBetTable(string $betTable, string $status, array $betSlipDetails, string $drawNumber, array $betSlip, string $winAmount){
         $sql = "UPDATE $betTable SET bet_status = ?, num_wins = ?, state = ?, draw_number = ?, draw_time = ?, new_period = ?, win_amount =? WHERE bid = ?";
-        return self::update($sql, [$status,$betSlipDetails['numwins'],1,$drawNumber,$betSlip['new_period'],$betSlip['betId'],$winAmount,$betSlip['bid']]);
+        return self::update($sql, [$status,$betSlipDetails['numwins'],1,$drawNumber,$betSlip['new_period'],$betSlip['draw_period'],$winAmount,$betSlip['bid']]);
     }
 
     public static function updateBetTableForTrackRule(string $betTable, array $betSlip){
