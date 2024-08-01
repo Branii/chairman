@@ -1,0 +1,14 @@
+{
+    "require": {
+        "flightphp/core": "^3.11",
+        "firebase/php-jwt": "^6.10",
+        "syntaxseed/libsodium": "^1.0",
+        "kicken/gearman-php": "^1.4",
+        "react/react": "^1.4",
+        "predis/predis": "^2.2",
+        "monolog/monolog": "^3.7"
+        
+    }, "require-dev": {
+        "phpunit/phpunit": "^10.5"
+    }
+}
